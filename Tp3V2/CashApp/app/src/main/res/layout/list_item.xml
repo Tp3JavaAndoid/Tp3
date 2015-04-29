@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:onClick="touteLaLigne"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/item_produit"
+        android:layout_width="0sp"
+        android:layout_height="fill_parent"
+        android:layout_weight="2"
+        
+        android:gravity="center_vertical"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/item_quantite"
+        android:layout_width="0sp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <Button
+        android:id="@+id/plusButton"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:text="+"
+        android:onClick="plus"
+        android:src="@android:drawable/ic_menu_delete"
+        android:background="#ffa1f582" />
+    
+    <Button
+        android:id="@+id/minusButton"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:text="-"
+        android:onClick="minus"
+        android:src="@android:drawable/ic_menu_delete"
+        android:background="#ffff827b" />
+
+
+</LinearLayout>
