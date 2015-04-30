@@ -117,17 +117,15 @@ public class MainActivity extends ActionBarActivity {
                     if (transaction.size() > 0)
                         for (AchatItem it : transaction) {
 
-                            if (it.produit.getCodeBar() == produitAjouter.getCodeBar()) {
+                            if (it.getProduit().getCodeBar() == produitAjouter.getCodeBar()) {
 
-                                it.qty++;
+                                it.setQty(it.getQty()+1);
                                 itemExist = true;
                             }
                         }
 
                     if (itemExist != true) {
-                        AchatItem achatItem = new AchatItem();
-                        achatItem.produit = produitAjouter;
-                        achatItem.qty = r.nextInt(10) + 1;
+                        AchatItem achatItem = new AchatItem(produitAjouter,r.nextInt(10) + 1);
                         transaction.add(achatItem);
                     }
                 }
@@ -153,6 +151,7 @@ public class MainActivity extends ActionBarActivity {
             List<Commande> commandes = repoCommande.getAll();
             Log.i("Dialog", "Liste des commandes");
             for (Commande c : commandes) {
+                if(c.getDate() != null)
                     Log.i("Dialog", c.toString());
 
             }
@@ -178,8 +177,8 @@ public class MainActivity extends ActionBarActivity {
 
     public void minus(View v){
         AchatItem i = (AchatItem)v.getTag();
-        if(i.qty > 1){
-            i.qty--;
+        if(i.getQty() > 1){
+            i.setQty(i.getQty() -1);
             calculerTotal();
             adapter.notifyDataSetChanged();
         }
@@ -194,7 +193,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void plus(View v){
         AchatItem i = (AchatItem)v.getTag();
-        i.qty++;
+        i.setQty(i.getQty()+1);
         calculerTotal();
         adapter.notifyDataSetChanged();
     }
@@ -219,16 +218,14 @@ public class MainActivity extends ActionBarActivity {
                         if (transaction.size() > 0)
                             for (AchatItem item : transaction) {
 
-                                if (item.produit.getCodeBar() == p.getCodeBar()) {
+                                if (item.getProduit().getCodeBar() == p.getCodeBar()) {
 
-                                    item.qty++;
+                                    item.setQty(item.getQty()+1);
                                     itemExist = true;
                                 }
                             }
                         if (itemExist != true) {
-                            AchatItem i = new AchatItem();
-                            i.produit = p;
-                            i.qty = 1;
+                            AchatItem i = new AchatItem(p,1);
                             transaction.add(i);
                         }
                         produitExits = true;
@@ -260,7 +257,7 @@ public class MainActivity extends ActionBarActivity {
 
         Double t = 0.00;
         for(AchatItem i : transaction){
-            t += i.produit.getPrix() * i.qty;
+            t += i.getProduit().getPrix() * i.getQty();
         }
         DecimalFormat df = new DecimalFormat("####0.00");
         TextView totalText = (TextView)findViewById(R.id.total);

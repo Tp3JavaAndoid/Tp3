@@ -39,10 +39,10 @@ public class MonAdapteur extends ArrayAdapter<AchatItem> {
 
 		// remplir le layout avec les bonnes valeurs
         TextView prodTV = (TextView) row.findViewById(R.id.item_produit);
-        prodTV.setText(item.produit.getNom());
+        prodTV.setText(item.getProduit().getNom());
 
         TextView qtyTV = (TextView) row.findViewById(R.id.item_quantite);
-        qtyTV.setText(String.valueOf(item.qty));
+        qtyTV.setText(String.valueOf(item.getQty()));
 
         // attache l'item a la ligne au complet si on veut réagir à un clic partout
         row.setTag(item);

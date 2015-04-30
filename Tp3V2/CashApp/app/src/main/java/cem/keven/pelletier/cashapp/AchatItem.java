@@ -5,15 +5,17 @@ package cem.keven.pelletier.cashapp;
  */
 public class AchatItem {
 
-    Produit produit;
-    private  Long id;
-    Integer qty;
+    private Produit produit;
+    private Integer qty;
 
-    public Long getId() {
-        return id;
+    public Produit getProduit(){ return  produit;}
+    public Integer getQty() {return  qty;}
+    public void setQty(Integer q){
+        qty = q;
     }
-    public void setId(long id) {
-        this.id = id;
+    public AchatItem(Produit prod,Integer quant){
+        qty = quant;
+        produit = prod;
     }
 
 
